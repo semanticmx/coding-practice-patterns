@@ -18,7 +18,14 @@ than any other child.
 
 ## Optimized approach
 
-1. On already calculated values, reuse
+1. On already calculated values, reuse (cache)
 2. Reduce time complexity
 
 ## Take Away
+
+1. Traverse for-loop using two opposite indices
+2. max() allows to set the maximum value between a set
+   3. max_value = 0
+   4. max_value = max(max_value, ....)
+5. Init a set of default values
+   6. defaults = [1] * 10 
