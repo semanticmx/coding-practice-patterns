@@ -1,5 +1,5 @@
 class Solution:
-    def merge(self, word1: str, word2: str) -> str:
+    def execute(self, word1: str, word2: str) -> str:
         """
 
         """
@@ -10,7 +10,3 @@ class Solution:
         last_pos = round(len(merged) / 2)
         merged += word1[last_pos:] if len(word1) > last_pos else word2[last_pos:]
         return merged
-
-
-if __name__ == "__main__":
-    pass
