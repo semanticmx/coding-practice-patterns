@@ -62,3 +62,19 @@ def test_uppercases():
     }
 
     assert result == expected
+
+
+def test_special_chars_on_bounds():
+    text = "lead Cow baby! success cow bigger $green cake"
+    result = get_result(text=text)
+    expected = {
+        "lead": 1,
+        "cow": 2,
+        "baby": 1,
+        "success": 1,
+        "bigger": 1,
+        "green": 1,
+        "cake": 1,
+    }
+
+    assert result == expected
