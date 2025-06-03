@@ -2,45 +2,97 @@ class Solution:
     def merge(self, word1: str, word2: str) -> str:
         """
         1. Requirements
-            - Merge two strings by adding letters in alternating order, starting with word1.
-            - If one string is longer, append the remaining characterers at the end.
-            - The length of each input string must be at least 1 and at most 100 characters.
-            - Both strings consist only of lowercase English letters.
         2. DocTest
-            >>> s = Solution()
-            >>> s.mergeGeorge("abc", "xyz")
-            'axbycz'
-            >>> s.mergeGeorge("ab", "pqrs")
-            'apbqrs'
-            >>> s.mergeGeorge("your", "sw")
-            'ysowur'
-            >>> s.mergeGeorge("", "xyz")
-            Traceback (most recent call last):
-                ...
-            ValueError: Both strings must have between 1 and 100 characters.
-            >>> s.mergeGeorge("xyz", "")
-            Traceback (most recent call last):
-                ...
-            ValueError: Both strings must have between 1 and 100 characters.
-            >>> s.mergeGeorge(123, "fail")
-            TypeError: 'int' object is not subscriptable
         3. Edge Cases
-            - One or both input strings are empty (should print an Error).
-            - String of different lengths.
-            - String with only one character.
-            - All characters are the same.
-            - One string is exactly 100 characters.
-            - One string is longer than 100 characters.
-            - The value of one or both inputs are not String types.
-            - Some characers are not in lowercase.
-            - One or both words are not in ascii English.
         4. Approach
-            - First, validate that both input strings have valid lengths (1-100)
-            - Use a loop to iterate through the longest string.
-            - Append characters from word1 alternately, if present.
-            - Join the characters into a string and return it.
+
+        1.Requeriments
+            - Merge two strings in alternative order, starting with the first string
+            - If some string is longer we append the remaining to the end of the merged string
+            - While has characters in both strings we alternative the order and add it in order
+        in the merged string
+            - Just are valid lower case letters
+            - Just accept words in english
+            - The length of two words needs be in the range [1-100]
+
+        2.DocTest
+        s = Solution()
+
+        s.mergeCarmen("abc", "xyz")
+        output: sadefigo
+        s.mergeCarmen("asd", "werc")
+        output: awsedrc
+        s.mergeCarmen("tqwrd", "ae")
+        output: taqewrd
+        s.mergeCarmen("añewr","dewf")
+        output: Error invalid character
+        s.mergeCarmen("AEio", "swrf")
+        output: Error only lowercase letters
+
+        Edge cases
+            - The strings dont be in the admited range [1-100]
+            - The strings not only contains english characters
+            - The strings not only contain lowercase letters
+            - The length of the strings are diferent
+            - Bhot strings contains the just only one character
+
+
+        Aproach
+            - Validate that the strings contains only english characters
+            - Validate that the length of the strings are in the range [1-100]
+            - Validate thet the strings only has lowercase letters
+            - Return an error if dont pass some validations
+            - Review what string has the shortest length
+            - Use the shorter  word for iterate betwen the words
+            - Start with the first word taking each character and  save it in the
+            merged string after that, take the second word and save each character into the merged
+            string, repit until shorter length
+            - If some word has more letter we going to take the remaind and  append in the merged string
+            - Rerturned the merged string
+
         """
-        pass
+        print(f"{word1=}")
+        print(f"{word2=}")
+        # O(c)
+        merged = ""
+
+        # @TODO: operador ternario?
+        # SRP: ver cuál es la palabra más corta
+        shorter = word1
+        if len(word1) > len(word2):
+            shorter = word2
+        print(f"{shorter=}")
+
+        # SRP: Caso especial, unir shorter cuando es
+        #      un solo caracter
+        # 2x + 4 = 2 (x + 2)
+        if (len(word1) == 1):
+            # @TODO: se usa merged?
+            merged += word1 + word2
+            print(f"Optimized {merged=}")
+            return merged
+
+        print(f"This is the shortest word: {shorter=}")
+        # O(n)
+        # SRP: mezclar los caracters hasta el más corto
+        for i, j in zip(word1, word2):
+            merged += i + j
+        print(f"merged step 1 {merged=}")
+
+        # multiplicar un string
+        # merged y word1 y word2
+        # SRP: Unir el resto
+        #   Sub-SRP: Identificar posición del resto
+        #   Sub-SRP: Identificar el resto de caracteres
+        # [start:end-not-inclusive]
+        # [10:]
+        res = word2[len(shorter):]
+        if len(word2 * 2) == len(merged):
+            res = word1[len(shorter):]
+
+        print(f"resto {res=}")
+        print(merged + res)
+        return merged + res
 
 
 if __name__ == "__main__":
