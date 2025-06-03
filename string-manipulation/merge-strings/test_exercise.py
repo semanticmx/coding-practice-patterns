@@ -3,7 +3,7 @@ from main import Solution
 
 def get_result(word1, word2):
     instance = Solution()
-    return instance.merge(word1=word1, word2=word2)
+    return instance.execute(word1=word1, word2=word2)
 
 
 def test_equal_length():
