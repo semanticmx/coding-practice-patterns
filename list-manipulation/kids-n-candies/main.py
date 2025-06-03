@@ -1,16 +1,13 @@
 class Solution:
     def execute(self, candies, extra_candies):
         """
-        O(n^2)
+        O(2n)
+        obtener el mayor de todos
         """
-        n = len(candies)
+        greatest = max(candies)
         result = []
-        for i in range(n):
-            temp = candies[i] + extra_candies
-            is_biggest = True
-            for j in range(n):
-                if temp < candies[j]:
-                    is_biggest = False
-                    break
-            result.append(is_biggest)
+        for i in range(len(candies)):
+            result.append(False)
+            if (candies[i] + extra_candies) >= greatest:
+                result[i] = True
         return result
