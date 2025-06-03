@@ -30,6 +30,7 @@ def test_convert_text_to_words():
 
     assert result == expected
 
+
 def test_happy_path():
     text = "lead cow baby success pink bigger green cake"
     result = get_result(text=text)
@@ -39,6 +40,22 @@ def test_happy_path():
         "baby": 1,
         "success": 1,
         "pink": 1,
+        "bigger": 1,
+        "green": 1,
+        "cake": 1,
+    }
+
+    assert result == expected
+
+
+def test_uppercases():
+    text = "lead Cow baby success cow bigger green cake"
+    result = get_result(text=text)
+    expected = {
+        "lead": 1,
+        "cow": 2,
+        "baby": 1,
+        "success": 1,
         "bigger": 1,
         "green": 1,
         "cake": 1,
