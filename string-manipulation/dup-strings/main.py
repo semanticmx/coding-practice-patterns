@@ -20,7 +20,7 @@ class Solution:
         i = 0
         dividend = max_chars
         roots = []
-        while dividend != 1:
+        while i < len(primes) or dividend != 1:
             result = dividend / primes[i]
             is_integer = self.is_integer(result)
             if is_integer:
@@ -35,6 +35,22 @@ class Solution:
         # find mcd of str1's len
         max_chars = len(str1)
         roots = self.get_prime_roots(max_chars)
+        if not roots:
+            return ""
+        i = 0
+        str1_len =  len(str1)
+        gcd = ""
+        while i < len(roots) and roots[i] * 2 <= str1_len:
+            current_root = roots[i]
+            multiplier = str1_len // current_root
+            divisor = str1[:current_root] * multiplier
+            if divisor == str1:
+                gcd = str1[:current_root]
+                break
+            i += 1
+
+        return gcd
+
 
 class TestSolution(unittest.TestCase):
     def test_happypath(self):
@@ -62,7 +78,7 @@ class TestSolution(unittest.TestCase):
         :return: ""
         :return:
         """
-        str1 = "holamundoholaholaholaholaholaholahola"
+        str1 = "HOLPHOLHOL"
         instance = Solution()
         result = instance.execute(str1)
         self.assertEqual("", result)
@@ -79,25 +95,17 @@ class TestSolution(unittest.TestCase):
 
         self.assertEqual(expected, result)
 
-
     def test_odd_case(self):
         """
         str1 = "ABCDEABCDEABCDE"
         :return: "ABCDE"
         """
-        pass
+        str1 = "ABCDEABCDEABCDE"
+        instance = Solution()
+        result = instance.execute(str1)
+        expected = "ABCDE"
 
-    def test_optimized(self):
-        """
-        "ABCDABCD" = 8 (4 diff)
-        "ABABABAB"
-        "ABCD" * 2 = "ABCDABCD" [v]
-        "ABCDAB"
-        "ABCDABCD"
-
-        :return:
-        """
-        pass
+        self.assertEqual(expected, result)
 
     def test_roots(self):
         instance = Solution()
