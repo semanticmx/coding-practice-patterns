@@ -29,3 +29,4 @@ than any other child.
    4. max_value = max(max_value, ....)
 5. Init a set of default values
    6. defaults = [1] * 10 
+7. `result=[False] * len(candies),` make an array with the same length of another length , and including a parameter
