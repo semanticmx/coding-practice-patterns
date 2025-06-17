@@ -29,3 +29,5 @@ than any other child.
    4. max_value = max(max_value, ....)
 5. Init a set of default values
    6. defaults = [1] * 10 
+7. Implemented unittest 
+8. `result=[False] * len(candies)` allows to make a array of an element with the same length of a length
