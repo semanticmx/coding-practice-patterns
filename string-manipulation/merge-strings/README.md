@@ -34,7 +34,6 @@ merged: [a|a|b|b|c|c|d|d|e|e]
 
 ## Take Away
 
-TBD
 - List compressions
 - Import unittest
 - Docstrings to define functs
